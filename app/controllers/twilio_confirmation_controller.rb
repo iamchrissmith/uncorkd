@@ -7,8 +7,7 @@ class TwilioConfirmationController < ApplicationController
   def create
     if current_user.is_valid_code?(code_params[:code])
       session[:authenticated] = true
-      flash["success"] = "Logged in as #{current_user.username}."
-      user_redirect(current_user)
+      redirect_to user_path(current_user), success: "Your Account has been created."
     else
       flash.now[:danger] = "Invalid code. Please try again"
       render :new
