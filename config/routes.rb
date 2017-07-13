@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get "/twilio-confirmation", to: "twilio_confirmation#new"
   post "twilio-confirmation", to: "twilio_confirmation#create"
 
-  resources :users, only: [:show, :create, :new]
+  resources :users, only: [:show, :create, :new, :edit, :update]
 end

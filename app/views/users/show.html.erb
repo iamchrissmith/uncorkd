@@ -1,3 +1,6 @@
+<% if current_user %>
+  <%= link_to "Edit Profile", edit_user_path(current_user) %>
+<% end %>
 <%= current_user.email %>
 <%= current_user.bio %>
 Your Followers
