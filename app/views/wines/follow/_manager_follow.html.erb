@@ -1,0 +1,5 @@
+<% if current_user.manager_has_venues_with_wine?(@wine) %>
+  <%= link_to "Edit Venues", wine_edit_venues_path(@wine) %>
+<% else %>
+  <%= link_to "Add to Venue", wine_add_to_venues_path(@wine) %>
+<% end %>

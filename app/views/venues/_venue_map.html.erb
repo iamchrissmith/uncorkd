@@ -1,0 +1,24 @@
+<div id="map"></div>
+
+<% content_for :foot do %>
+  <script>
+    function initMap() {
+      var myLatLng = {lat: <%= @venue.latitude %>, lng: <%= @venue.longitude %>};
+
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatLng,
+          scrollwheel: false,
+          zoom: 8
+        });
+
+        // Create a marker and set its position.
+        var marker = new google.maps.Marker({
+          map: map,
+          position: myLatLng,
+          title: '<%= @venue.name %>'
+        });
+    }
+  </script>
+  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAP_KEY']}&callback=initMap", async: true, defer: true %>
+<% end %>

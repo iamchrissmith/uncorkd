@@ -1,5 +1,6 @@
 # README
 [![Build Status](https://travis-ci.org/iamchrissmith/uncorked.svg?branch=master)](https://travis-ci.org/iamchrissmith/uncorked)
+[![security](https://hakiri.io/github/iamchrissmith/uncorked/master.svg)](https://hakiri.io/github/iamchrissmith/uncorked/master)
 
 ## Uncorked
 

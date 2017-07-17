@@ -3,5 +3,5 @@
 <% end %>
 <%= current_user.email %>
 <%= current_user.bio %>
-Your Followers
-Following
+
+<%= render partial: "users/profile/#{current_user.role}" %>

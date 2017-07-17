@@ -1,0 +1,7 @@
+<% if params[:q] %>
+  <p>You searched for: <%= params[:q] %></p>
+<% end %>
+<form id="search_form" method="GET" action="<%= referral %>">
+  <input placeholder="Search" id="search" type="text" name="q" />
+  <input type="submit" value="Search">
+</form>

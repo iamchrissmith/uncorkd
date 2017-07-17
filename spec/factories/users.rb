@@ -10,4 +10,12 @@ FactoryGirl.define do
 
     sequence(:username) { |n| "username#{n}" }
   end
+
+  trait :as_manager do
+    role 1
+  end
+
+  trait :as_admin do
+    role 2
+  end
 end

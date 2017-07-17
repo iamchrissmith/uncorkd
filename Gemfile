@@ -26,6 +26,8 @@ gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'twilio-ruby'
+=======
+gem 'geocoder'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -37,6 +39,11 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'brakeman', :require => false
   gem 'pry'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 end
 
 group :development do

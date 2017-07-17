@@ -1,0 +1,8 @@
+<% @venues.each do |venue| %>
+  <div class="venue">
+    <p><%= link_to venue.name, venue_path(venue) %></p>
+    <%= render partial: 'venues/venue_details', locals: {venue: venue} %>
+  </div>
+<% end %>
+
+<%= will_paginate @venues %>

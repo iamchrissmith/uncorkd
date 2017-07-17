@@ -1,0 +1,10 @@
+<%= form_tag( wine_edit_venues_path(@wine), method: :post) do %>
+  Select/deselect the venues where you would like to list/unlist <%= @wine.name %>:
+  <ul>
+    <% current_user.venues.each do |venue| %>
+      <li><%= check_box_tag "venue_wines[venue_ids][]", venue.id, venue.id.in?(@wine.venues.pluck(:id)), id: "venue_wines_venue_ids_#{venue.id}" %>
+      <label for="venue_wines_venue_ids_<%= venue.id %>"><%= venue.name %></label></li>
+    <% end %>
+  </ul>
+  <%= submit_tag "Update Venues with #{@wine.name}" %>
+<% end %>

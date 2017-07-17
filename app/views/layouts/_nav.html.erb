@@ -1,24 +1,12 @@
-<nav>
+<nav class="nav-extended">
   <div class="nav-wrapper grey darken-4">
     <a href="#" class="brand-logo">Uncorked</a>
     <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-      <li>
-        <% if current_user %>
-          <%= link_to "Logout", logout_path %>
-        <% else %>
-          <%= link_to "Login", login_path %>
-          <%= link_to "Create Account", new_user_path %>
-        <% end %>
-      </li>
+      <%= render partial: 'layouts/nav_links' %>
     </ul>
     <ul class="side-nav" id="mobile-menu">
-      <% if current_user %>
-        <%= link_to "Logout", logout_path %>
-      <% else %>
-        <%= link_to "Login", login_path %>
-        <%= link_to "Create Account", new_user_path %>
-      <% end %>
+      <%= render partial: 'layouts/nav_links' %>
     </ul>
   </div>
   <% if current_user %>

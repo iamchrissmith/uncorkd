@@ -1,3 +1,10 @@
 @import "materialize";
 @import "materialize/extras/nouislider";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+#map {
+  width: 50%;
+  height: 50%;
+  min-height: 300px;
+  min-width: 300px;
+}

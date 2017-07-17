@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712225923) do
+
+ActiveRecord::Schema.define(version: 20170717152818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
+
+  create_table "user_venues", force: :cascade do |t|
+    t.bigint "venue_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "manager_id"
+    t.string "manager_type"
+    t.index ["venue_id"], name: "index_user_venues_on_venue_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -29,4 +40,38 @@ ActiveRecord::Schema.define(version: 20170712225923) do
     t.string "verification_code"
   end
 
+  create_table "venue_wines", force: :cascade do |t|
+    t.bigint "venue_id"
+    t.bigint "wine_id"
+    t.index ["venue_id"], name: "index_venue_wines_on_venue_id"
+    t.index ["wine_id"], name: "index_venue_wines_on_wine_id"
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.string "name"
+    t.string "street_address"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
+  end
+
+  create_table "wines", force: :cascade do |t|
+    t.string "name"
+    t.string "varietal"
+    t.string "vintage"
+    t.string "vineyard"
+    t.integer "rating"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_wines_on_name"
+  end
+
+  add_foreign_key "user_venues", "venues"
+  add_foreign_key "venue_wines", "venues"
+  add_foreign_key "venue_wines", "wines"
 end
