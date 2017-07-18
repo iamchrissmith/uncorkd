@@ -12,8 +12,11 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
 
     if @user.save
+      ConfirmationSender.send_confirmation_to(@user)
       session[:user_id] = @user.id
-      redirect_to user_path(@user), success: "Your Account has been created."
+      
+      redirect_to twilio_confirmation_path
+
     else
       render :new
     end

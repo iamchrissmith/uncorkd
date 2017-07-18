@@ -25,8 +25,9 @@ gem 'kaminari'
 gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'twilio-ruby'
+=======
 gem 'geocoder'
-
 
 group :development, :test do
   gem 'rspec-rails'
