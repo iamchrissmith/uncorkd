@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :follows
   has_many :followed_venues, :through => :follows, :source => :target, :source_type => 'Venue'
+  has_many :followed_wines, through: :follows, source: :target, source_type: 'Wine'
+
 
   def verified?
     verified

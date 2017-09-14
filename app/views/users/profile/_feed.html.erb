@@ -1,6 +1,5 @@
-<h3>News Feed</h3>
-<div class="container">
-    <div class="collection">
+    <div class="collection white-div">
+      <h3 class = "center-align">News Feed</h3>
         <% if @user.news_feed.empty? %>
           <article class="collection-item">
             <p class="title">No activity.</p>
@@ -11,4 +10,3 @@
           <% end %>
         <% end %>
     </div>
-</div>

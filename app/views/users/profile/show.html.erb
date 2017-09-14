@@ -1,24 +1,67 @@
-<%= link_to "Edit Profile", edit_user_path(@user) %>
 
-<p>Account Status: <% if @user.verified? %>Verified<% else %>Not Verified<% end %>
-<% if !@user.verified? %>
-<p>
-  <%= link_to "Verify your account now.", verify_path %>
-</p>
-<% end -%>
-<%= @user.email %>
-<%= @user.bio %>
 
-<% if current_user.badges %>
-  <h3>Your Badges</h3>
-  <ul>
-    <% current_user.badges.each do |badge| %>
-    <li>
-      <p><%= badge.name %></p>
-      <%= image_tag("/images/#{badge.name.parameterize}.png") %>
-    </li>
-    <% end %>
-  </ul>
-<% end %>
+
+<div class="row">
+  <div class="col s9">
+    <div class="feed">
+      <%= render partial: "users/profile/feed" %>
+    </div>
+  </div>
+    <div class="profile-overview white-div col s3 center-align">
+      <h5><%= @user.first_name %> <%= @user.last_name %></h5>
+      <p><%= current_user.bio %></p>
+      <p><%= current_user.followers.count %> Followers</p>
+      <p><%= current_user.follows.count %> Following</p>
+      <p><%= current_user.badges.count %> Badges</p>
+
+    </div>
+    <br>
+    <div class="col s3 white-div center-align">
+      <h5>Your Badges</h5>
+      <ul>
+        <% current_user.badges.each do |badge| %>
+        <li>
+          <p><%= badge.name %></p>
+          <%= image_tag("/images/#{badge.name.parameterize}.png") %>
+        </li>
+        <% end %>
+
+      </ul>
+      <% if current_user.badges.empty? %>
+      <p>You have no badges yet! Start reviewing to earn badges.</p>
+        <%= link_to "Review Wines", wines_path, class: "waves-effect waves-light btn waves-input-wrapper" %>
+        <%= link_to "Review Venues", venues_path, class: "waves-effect waves-light btn waves-input-wrapper" %>
+      <% end %>
+    </div>
+    <div class="white-div col s3 center-align">
+      <h5>Wines You Follow</h5>
+      <% current_user.followed_wines.each do |wine| %>
+        <p><%= link_to wine.name, wine_path(wine) %></p>
+      <% end %>
+    </div>
+    <div class="white-div col s3 center-align">
+      <h5>Venues You Follow</h5>
+      <% current_user.followed_venues.each do |venue| %>
+        <p><%= link_to venue.name, venue_path(venue) %></p>
+      <% end %>
+    </div>
+    <div class="white-div col s3 center-align">
+      <h5>Account Details</h5>
+      <p>Username: <%= current_user.username %></p>
+      <p>Email: <%= current_user.email %></p>
+      <%= link_to "Edit Profile", edit_user_path(@user), class: "waves-effect waves-light btn waves-input-wrapper" %>
+
+      <p>Account Status: <% if @user.verified? %>Verified<% else %>Not Verified<% end %>
+      <% if !@user.verified? %>
+      <p>
+        <%= link_to "Verify your account now.", verify_path %>
+      </p>
+      <% end -%>
+    </div>
+  </div>
+
+</div>
+
+
 
 <%= render partial: "users/profile/#{@user.role}", locals: {user: @user} %>
