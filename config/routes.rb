@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   post "users/verify"
   post "users/resend"
 
+  get '/auth/facebook', as: 'facebook_login'
+  get "auth/facebook/callback", to: "sessions#create"
+  get "auth/failure", to: redirect("/")
+
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
@@ -29,6 +33,15 @@ Rails.application.routes.draw do
   namespace :manager do
     resources :venues, only: [:index, :show, :new, :create, :edit, :update]
   end
+
+  namespace :admin do
+    resources :users, only: [:index, :update]
+    resources :venues, only: [:index, :destroy]
+    resources :wines, only: [:index, :destroy]
+    get '/dashboard', to: 'admin#show'
+  end
+
+
 
   resources :wines, only: [:index, :show] do
     get '/add_to_venues', to: "venue_wines#new"

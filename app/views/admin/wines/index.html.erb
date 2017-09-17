@@ -1,0 +1,30 @@
+<h1 class = "center-align">Manage Wines</h1>
+
+<table class = "centered responsive-table highlight">
+   <thead>
+     <tr>
+         <th>Name</th>
+         <th>Vineyard</th>
+         <th>Varietal</th>
+         <th>Vintage</th>
+         <th>Options</th>
+     </tr>
+   </thead>
+
+   <tbody>
+     <% @wines.each do |wine| %>
+     <tr class = "wine-<%= wine.id %>">
+       <td><%= link_to wine.name, wine_path(wine) %></td>
+       <td><%= wine.vineyard %></td>
+       <td><%= wine.varietal %></td>
+       <td><%= wine.vintage %></td>
+       <td>
+         <%= link_to "Delete", admin_wine_path(wine), method: "delete", class: "waves-effect waves-light btn waves-input-wrapper btn-red" %>
+       </td>
+     </tr>
+     <% end %>
+   </tbody>
+ </table>
+ <div class="center-align">
+   <%= will_paginate @wines %>
+ </div>

@@ -1,0 +1,5 @@
+<span class="title"><%= link_to "#{activity['actor'].name}", venue_path(activity['actor']) %></span>
+<p><%= "#{activity['verb']}ed" %>
+  <%= link_to activity['object'].name, send("#{activity['object'].class.to_s.downcase}_path", activity['object']) %><br/>
+  <span class="timestamp"><%= localize(DateTime.parse(activity['time']), format: :long) %></span>
+</p>

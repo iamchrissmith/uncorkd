@@ -1,0 +1,14 @@
+<h3>News Feed</h3>
+<div class="container">
+    <div class="collection">
+        <% if @reviewable.news_feed.empty? %>
+          <article class="collection-item">
+            <p class="title">No activity.</p>
+          </article>
+        <% else %>
+          <% for activity in @reviewable.news_feed %>
+              <%= render_activity activity %>
+          <% end %>
+        <% end %>
+    </div>
+</div>

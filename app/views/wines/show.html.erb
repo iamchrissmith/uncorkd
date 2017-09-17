@@ -1,6 +1,7 @@
 <h2><%= @wine.name %></h2>
-<% if current_user %>
+<% if current_user && !current_user.admin? %>
   <%= render partial: "wines/follow/#{current_user.role}_follow" %>
 <% end %>
 <%= render partial: 'wines/wine_details', locals: {wine: @wine} %>
 <%= render partial: 'venues/summary', locals: {venues: @wine.venues} %>
+<%= render partial: 'wines/newsfeed' %>

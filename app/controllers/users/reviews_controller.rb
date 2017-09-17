@@ -1,5 +1,6 @@
 class Users::ReviewsController < ApplicationController
   def new
+    session[:return_to] = request.referer
     @review = Review.new
   end
 
@@ -15,8 +16,8 @@ class Users::ReviewsController < ApplicationController
     if review.save
       review.report_review
       flash[:success] = "Review successfully submitted!"
-      redirect_to user_path(current_user)
-      Badge. badge_allocation(current_user)
+      redirect_to session.delete(:return_to)
+      Badge.badge_allocation(current_user)
     else
       render :new
     end

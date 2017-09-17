@@ -1,0 +1,30 @@
+<h1 class = "center-align">Admin Dashboard</h1>
+<div class="row center-align">
+  <div class="col m4 s12">
+    <%= link_to admin_users_path do %>
+    <div class="card small white-div">
+      <div class="card-content">
+        <h4><i class="fa fa-users" aria-hidden="true"></i> <br><br>Manage Users</h4>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="col m4 s12">
+    <%= link_to admin_wines_path do %>
+    <div class="card small white-div">
+      <div class="card-content">
+        <h4><i class="fa fa-glass" aria-hidden="true"></i> <br><br>Manage Wines</h4>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="col m4 s12">
+    <%= link_to admin_venues_path do %>
+    <div class="card small white-div">
+      <div class="card-content">
+        <h4><i class="fa fa-building-o" aria-hidden="true"></i> <br><br>Manage Venues</h4>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
