@@ -1,20 +1,20 @@
+<%= tag :div, class: "venues", data: {names: @new_review_presenter.venues.pluck(:name)} %>
+
 <%= form_for([current_user, @new_review_presenter.review], url: users_reviews_path, method: :post) do |f| %>
   <%= f.label(:description) %>
   <%= f.text_field(:description) %>
   <%= f.label(:rating) %>
 
   <%= f.number_field(:rating) %>
-  <div class="">
-
-
-    <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!<i class = "mdi-navigation-arrow-drop-down right"></i></a>
-
-   <!-- Dropdown Structure -->
-   <ul id='dropdown1' class='dropdown-content'>
-     <%= @new_review_presenter.venues.each do |venue| %>
-       <li><a href="#!"><%= venue.name %></a></li>
-     <% end %>
-   </ul>
+  <div class="row">
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" id="autocomplete-input" class="autocomplete">
+          <label for="autocomplete-input">Venue</label>
+        </div>
+      </div>
+    </div>
   </div>
   <%= f.hidden_field :reviewable_id, :value => params["reviewable_id"] %>
   <%= f.hidden_field :reviewable_type, :value => params["reviewable_type"]%>
