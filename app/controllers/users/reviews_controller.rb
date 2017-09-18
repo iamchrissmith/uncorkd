@@ -19,7 +19,7 @@ class Users::ReviewsController < ApplicationController
       redirect_to session.delete(:return_to)
       Badge.badge_allocation(current_user)
     else
-      render :new
+      redirect_to new_users_review_path(:reviewable_id => reviewable["reviewable_id"], :reviewable_type => reviewable["reviewable_type"])
     end
   end
 
