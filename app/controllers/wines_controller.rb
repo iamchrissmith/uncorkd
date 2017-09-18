@@ -1,5 +1,4 @@
 require 'will_paginate/array'
-
 class WinesController < ApplicationController
   def index
     if params[:search].present?
