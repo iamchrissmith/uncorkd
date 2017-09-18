@@ -10,6 +10,6 @@ class WinesController < ApplicationController
   end
 
   def show
-    @wine = SnoothWine.show_wine(params[:id])
+    @wine_data = WineShowPresenter.new(params[:id])
   end
 end

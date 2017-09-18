@@ -2,7 +2,7 @@
   <%= render partial: "wines/follow/#{current_user.role}_follow" %>
 <% end %>
 <div class="center">
-  <%= render partial: 'wines/wine_details', locals: {wine: @wine} %>
+  <%= render partial: 'wines/wine_details', locals: {wine: @wine_data.snooth_wine} %>
 </div>
-<%= render partial: 'wines/wine_reviews', locals: {wine: @wine} %>
-<%= render partial: 'venues/summary', locals: {venues: @wine.venues} %>
+<%= render partial: 'wines/wine_reviews', locals: {reviews: @wine_data.reviews} %>
+<%= render partial: 'venues/summary', locals: {venues: @wine_data.venues} %>
