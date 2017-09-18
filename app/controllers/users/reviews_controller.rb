@@ -1,7 +1,7 @@
 class Users::ReviewsController < ApplicationController
   def new
     session[:return_to] = request.referer
-    @review = Review.new
+    @new_review_presenter = NewReviewPresenter.new
   end
 
   def create
