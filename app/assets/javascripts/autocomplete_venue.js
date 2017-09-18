@@ -4,12 +4,12 @@ $(document).ready(function () {
   $.each(venueNames, function (index, name) {
         data[name] = null
     })
-    console.log(data)
 $('input.autocomplete').autocomplete({
   data: data,
   limit: 10,
   onAutocomplete: function(val) {
     console.log(val)
+    $("#review_venue").val(val);
     // Callback function when value is autcompleted.
   },
   minLength: 1,
