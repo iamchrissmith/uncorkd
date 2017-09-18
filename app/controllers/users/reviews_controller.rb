@@ -25,6 +25,7 @@ class Users::ReviewsController < ApplicationController
 
   private
     def review_params
-      params.require(:review).permit(:description, :rating, :user_id, :reviewable_id, :reviewable_type)
+      params["review"]["venue_id"] = Venue.find_by(name: params["review"]["venue"]).id
+      params.require(:review).permit(:description, :rating, :user_id, :reviewable_id, :reviewable_type, :venue_id)
     end
 end
