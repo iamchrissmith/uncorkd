@@ -14,6 +14,18 @@
       <%= render partial: "venues/follow/#{current_user.role}_follow" %>
     <% end %>
   </div><br>
+
+  <div class="white-div center-align">
+  <h5>Average Rating</h5>
+  <%= @venue.average_review_rating %>
+  <% @venue.average_review_rating.floor.times do %>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <% end %>
+  <% if @venue.half_star? %>
+    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+  <% end %>
+</div><br>
+
   <div class="white-div center-align">
     <h5>Wines</h5>
     <% @venue.wines.each do |wine| %>

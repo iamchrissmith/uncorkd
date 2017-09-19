@@ -12,10 +12,10 @@
     <% end %>
     <%= render partial: 'wines/wine_details', locals: {wine: @wine} %>
 </div>
+
 <div class="white-div center-align">
 <h5>Average Rating</h5>
 <%= @wine.average_review_rating %>
-
 <% @wine.average_review_rating.floor.times do %>
 <i class="fa fa-star" aria-hidden="true"></i>
 <% end %>
