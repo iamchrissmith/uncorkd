@@ -38,7 +38,9 @@ def create_wines
 end
 
 def wine_sample
-  wines = Wine.all
+  first = Wine.first.id
+  last = Wine.last.id
+  wines = (first..last).to_a
   wines.sample
 end
 

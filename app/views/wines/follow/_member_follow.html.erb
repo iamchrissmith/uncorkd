@@ -1,4 +1,4 @@
-<%= link_to "Review", new_users_review_path(:reviewable_id => @wine_data.snooth_wine, :reviewable_type => params["controller"]), class:"waves-effect waves-light btn-large" %>
+<%= link_to "Review", new_users_review_path(reviewable_id: {code: @wine_data.snooth_wine.code, name: @wine_data.snooth_wine.name}, reviewable_type: params["controller"]), class:"waves-effect waves-light btn-large" %>
 <% if @wine_data.uncorked_wine && current_user.followed(@wine_data.uncorked_wine) %>
   <%= link_to "Unfollow Wine", user_follow_path(current_user, current_user.followed(@wine_data.uncorked_wine)), :method => :delete, class:"waves-effect waves-light btn-large" %>
 <% else %>

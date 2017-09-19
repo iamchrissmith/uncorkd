@@ -21,7 +21,7 @@ RSpec.feature "user wants to review..." do
         fill_in "Rating", with: 9
         click_button "Create Review"
 
-        expect(current_path).to eq(wine_path(test_wine))
+        expect(current_path).to eq(wine_path("olmaia-cabernet-di-toscana"))
       end
     end
 

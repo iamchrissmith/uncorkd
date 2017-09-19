@@ -7,7 +7,9 @@ class Users::ReviewsController < ApplicationController
   def create
     reviewable = params["review"]
     if reviewable["reviewable_type"] == "wines"
-      wine = Wine.find(reviewable["reviewable_id"])
+      wine = Wine.find_or_create_by(code: reviewable["reviewable_id"]["code"] ) do |wine|
+        wine.name = reviewable["reviewable_id"]["name"]
+      end
       review = wine.reviews.create(review_params)
     else
       venue  = Venue.find(reviewable["reviewable_id"])
@@ -25,6 +27,6 @@ class Users::ReviewsController < ApplicationController
 
   private
     def review_params
-      params.require(:review).permit(:description, :rating, :user_id, :reviewable_id, :reviewable_type)
+      params.require(:review).permit(:description, :rating, :user_id, :reviewable_params, :reviewable_id, :reviewable_type)
     end
 end
