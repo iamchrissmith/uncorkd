@@ -44,7 +44,7 @@ class Feed
         object: "#{target_type}:#{target_id}",
         foreign_id: "#{target_type}:#{target_id}",
         message: "#{message}",
-        venue: Venue.find(venue_id),
+        venue: (Venue.find(venue_id) if venue_id) || nil,
         time: DateTime.now,
         to: ["#{target_feed}:#{target_id}"]
       }

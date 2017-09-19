@@ -7,7 +7,7 @@ class Review < ApplicationRecord
 
   belongs_to :user
   belongs_to :reviewable, polymorphic: true
-  belongs_to :venue
+  belongs_to :venue, optional: :true
 
   def reviewable_feed_name
     reviewable_type.downcase
