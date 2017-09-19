@@ -6,12 +6,18 @@
   </div>
   <div class="col s4">
 
-  <div class="profile-overview white-div center-align">
+  <div class="white-div center-align">
     <h5><%= @venue.name %></h5>
     <p><%= @venue.street_address %><br>
     <%= @venue.city %>, <%= @venue.state %> <%= @venue.zip %></p>
     <% if current_user %>
       <%= render partial: "venues/follow/#{current_user.role}_follow" %>
+    <% end %>
+  </div><br>
+  <div class="white-div center-align">
+    <h5>Wines</h5>
+    <% @venue.wines.each do |wine| %>
+    <%= link_to wine.name, wine_path(wine) %>
     <% end %>
   </div><br>
     <div class="venue-map">
