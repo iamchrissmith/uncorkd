@@ -1,4 +1,6 @@
 class Wine < ApplicationRecord
+  include ReviewRatingsModule
+
   validates_presence_of :name, :vintage, :rating
   validates_uniqueness_of :name
 
@@ -17,9 +19,5 @@ class Wine < ApplicationRecord
     feed = StreamRails.feed_manager.get_news_feeds(id)[:wine]
     results = feed.get()['results']
     enricher.enrich_activities(results)
-  end
-
-  def average_review_rating
-    reviews.average(:rating).to_f.round(1)
   end
 end
