@@ -15,9 +15,9 @@
      <% @wines.each do |wine| %>
      <tr class = "wine-<%= wine.id %>">
        <td><%= link_to wine.name, wine_path(wine) %></td>
-       <td><%= wine.vineyard %></td>
-       <td><%= wine.varietal %></td>
-       <td><%= wine.vintage %></td>
+       <td><%#= wine.vineyard %></td>
+       <td><%#= wine.varietal %></td>
+       <td><%#= wine.vintage %></td>
        <td>
          <%= link_to "Delete", admin_wine_path(wine), method: "delete", class: "waves-effect waves-light btn waves-input-wrapper btn-red" %>
        </td>
