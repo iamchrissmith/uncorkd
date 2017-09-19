@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+
+  <html>
   <head>
     <title>Uncorked | <%= @title %></title>
     <%= csrf_meta_tags %>
@@ -9,7 +10,11 @@
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
-  <body>
+  <% if current_page?(root_path) && !current_user %>
+    <body class="splash">
+  <% else %>
+    <body>
+  <% end %>
     <%= render 'layouts/nav' %>
     <div class="container">
       <%= render 'layouts/flash' %>
