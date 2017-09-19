@@ -20,7 +20,6 @@ RSpec.feature "user wants to review..." do
         fill_in "Description", with: "Nice tannins"
         fill_in "Rating", with: 9
         click_button "Create Review"
-        expect(page).to have_content("Review successfully submitted!")
         expect(current_path).to eq(user_path(user))
       end
     end
@@ -58,7 +57,6 @@ RSpec.feature "user wants to review..." do
         fill_in "Description", with: "Nice wines"
         fill_in "Rating", with: 9
         click_button "Create Review"
-        expect(page).to have_content("Review successfully submitted!")
         expect(current_path).to eq(user_path(user))
       end
     end
