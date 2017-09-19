@@ -6,7 +6,8 @@
   </div>
   <div class="col s4">
   <div class="profile-overview white-div center-align">
-    <h4><%= @wine.name %></h4>
+    <h5><%= @wine.name %></h5>
+    <p>Average Rating: <%= @wine.average_review_rating %></p>
     <% if current_user && !current_user.admin? %>
       <%= render partial: "wines/follow/#{current_user.role}_follow" %>
     <% end %>
