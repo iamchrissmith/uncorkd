@@ -1,0 +1,26 @@
+<h1 class = "center-align">Manage Venues</h1>
+
+<table class = "centered responsive-table highlight">
+   <thead>
+     <tr>
+         <th>Name</th>
+         <th>Location</th>
+         <th>Options</th>
+     </tr>
+   </thead>
+
+   <tbody>
+     <% @venues.each do |venue| %>
+     <tr class = "venue-<%= venue.id %>">
+       <td><%= venue.name %></td>
+       <td><%= "#{venue.city}, #{venue.state}" %></td>
+       <td>
+         <%= link_to "Delete", admin_venue_path(venue), method: "delete", class: "waves-effect waves-light btn waves-input-wrapper btn-red" %>
+       </td>
+     </tr>
+     <% end %>
+   </tbody>
+ </table>
+ <div class="center-align">
+   <%= will_paginate @venues %>
+ </div>

@@ -26,4 +26,11 @@ class Venue < ApplicationRecord
     return true if zip_changed?
     false
   end
+
+  def news_feed
+    enricher = StreamRails::Enrich.new
+    feed = StreamRails.feed_manager.get_news_feeds(id)[:venue]
+    results = feed.get(:limit=>5)['results']
+    enricher.enrich_activities(results)
+  end
 end

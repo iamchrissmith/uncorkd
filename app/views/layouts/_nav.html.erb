@@ -1,6 +1,6 @@
 <nav class="nav-extended">
   <div class="nav-wrapper grey darken-4">
-    <%= link_to "Uncorked", users_profile_path, class: "brand-logo" %>
+    <%= link_to "Uncorked", root_path, class: "brand-logo" %>
     <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <%= render partial: 'layouts/nav_links' %>
@@ -11,8 +11,7 @@
   </div>
   <% if current_user %>
     <div class="nav-content grey darken-3">
-        <span class="title">Hello, <%= link_to "#{current_user.first_name} #{current_user.last_name}", users_profile_path %>
+        <span class="title">Hello, <%= link_to "#{current_user.first_name} #{current_user.last_name}", root_path %>
     </div>
   <% end %>
-  <%= link_to "Sign in with Facebook", facebook_login_path, id: "sign_in" %>
 </nav>

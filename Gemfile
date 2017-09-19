@@ -34,6 +34,7 @@ gem 'authy'
 gem 'twilio-ruby', '~>5.0.0'
 gem 'stream_rails'
 gem 'omniauth-facebook'
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'rspec-rails'

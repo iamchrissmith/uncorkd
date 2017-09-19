@@ -1,12 +1,18 @@
 @import "materialize";
 @import "materialize/extras/nouislider";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 #map {
   width: 50%;
   height: 50%;
   min-height: 300px;
   min-width: 300px;
+}
+
+.btn-red {
+  background-color: #ee6e73;
 }
 
 body {

@@ -1,13 +1,14 @@
 FactoryGirl.define do
   factory :user do
-    first_name "MyFirstName"
-    last_name "MyLastName"
+    sequence :first_name {|n| "MyFirstName#{n}"}
+    sequence :last_name {|n| "MyLastName#{n}"}
     email "MyEmail@email.com"
     bio "Mybio blah blah"
     country_code "1"
     phone_number "12310041041"
     password "password"
     role 0
+    status 0
     uid "1234567890"
 
     sequence(:username) { |n| "username#{n}" }

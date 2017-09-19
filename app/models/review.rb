@@ -1,5 +1,9 @@
 class Review < ApplicationRecord
-  validates_presence_of :user_id, :description, :rating, :reviewable_type, :reviewable_id
+  validates_presence_of :user_id,
+                        :description,
+                        :rating,
+                        :reviewable_type,
+                        :reviewable_id
 
   belongs_to :user
   belongs_to :reviewable, polymorphic: true
@@ -10,10 +14,11 @@ class Review < ApplicationRecord
 
   def report_review
     attrs = {
-      user_id: user_id,
-      target_type: reviewable_type,
-      target_id: reviewable_id,
-      target_feed: reviewable_feed_name
+      :user_id       => user_id,
+      :target_type   => reviewable_type,
+      :target_id     => reviewable_id,
+      :target_feed   => reviewable_feed_name,
+      :message       => description
     }
     Feed.new(attrs).review
   end
