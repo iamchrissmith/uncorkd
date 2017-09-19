@@ -1,7 +1,23 @@
-<h2><%= @wine.name %></h2>
-<% if current_user && !current_user.admin? %>
-  <%= render partial: "wines/follow/#{current_user.role}_follow" %>
-<% end %>
-<%= render partial: 'wines/wine_details', locals: {wine: @wine} %>
-<%= render partial: 'venues/summary', locals: {venues: @wine.venues} %>
-<%= render partial: 'wines/newsfeed' %>
+<div class="row page-row">
+  <div class="col s8 center-align col-feed">
+    <div class="feed">
+      <%= render partial: 'wines/newsfeed' %>
+    </div>
+  </div>
+  <div class="col s4">
+  <div class="profile-overview white-div center-align">
+    <h4><%= @wine.name %></h4>
+    <% if current_user && !current_user.admin? %>
+      <%= render partial: "wines/follow/#{current_user.role}_follow" %>
+    <% end %>
+    <%= render partial: 'wines/wine_details', locals: {wine: @wine} %>
+</div>
+<div class="white-div center-align">
+  <h5>Venues</h5>
+  <% @wine.venues.each do |venue| %>
+    <p><%= link_to venue.name, venue_path(venue) %></p>
+  <% end %>
+</div>
+
+</div>
+</div>
