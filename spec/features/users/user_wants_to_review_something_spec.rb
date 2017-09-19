@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "user wants to review..." do
+RSpec.feature "user wants to review..."  do
   context "a wine" do
     context "when logged in" do
       let(:user) { create(:user) }
@@ -24,12 +24,8 @@ RSpec.feature "user wants to review..." do
         expect(current_path).to eq(new_users_review_path)
         fill_in "Description", with: "Nice tannins"
         fill_in "Rating", with: 9
-        select venue_1.name, :from => "venue_selection"
         click_button "Create Review"
         expect(current_path).to eq(wine_path(test_wine))
-        expect(page).to have_content(venue_1.name)
-        expect(page).to_not have_content(venue_2.name)
-        expect(page).to_not have_content(venue_3.name)
       end
     end
 
