@@ -1,22 +1,22 @@
-<div class="row">
-  <div class="col s9 center-align">
+<div class="row page-row">
+  <div class="col s8 center-align col-feed">
     <div class="feed">
       <%= render partial: 'venues/newsfeed' %>
     </div>
   </div>
-  <div class="profile-overview white-div col s3 center-align">
+  <div class="col s4">
+
+  <div class="profile-overview white-div center-align">
     <h5><%= @venue.name %></h5>
-    <p>Address: <%= @venue.street_address %></p>
-    <p>City: <%= @venue.city %></p>
-    <p>State: <%= @venue.state %></p>
-    <p>Zipcode:<%= @venue.zip %></p>
+    <p><%= @venue.street_address %><br>
+    <%= @venue.city %>, <%= @venue.state %> <%= @venue.zip %></p>
     <% if current_user %>
       <%= render partial: "venues/follow/#{current_user.role}_follow" %>
     <% end %>
-  </div>
-  <div class="venue-map white-div col s3 center-align">
+  </div><br>
     <div class="venue-map">
       <%= render partial: 'venues/venue_map' %>
-    </div>
   </div>
+</div>
+
 </div>
