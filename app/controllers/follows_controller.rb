@@ -5,14 +5,14 @@ class FollowsController < ApplicationController
     when "Venue"
       target = Venue.find(params[:target_id])
     when "Wine"
-      target = Wine.find(params[:target_id])
+      target = Wine.find_or_create_by(code: params[:target_params][:code]) do |wine|
+        wine.name = params[:target_params][:name]
+      end
     when "User"
       target = User.find(params[:target_id])
     end
-
     follow = current_user.follows.new(target: target)
     if follow.save
-      follow.report_follow
       redirect_to follow.target, success: "#{follow_params[:target_type]} successfully followed!"
     else
       redirect_to follow.target, warning: "There was a problem! #{follow_params[:target_type]} was not followed!"

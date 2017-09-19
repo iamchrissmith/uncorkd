@@ -20,9 +20,11 @@ RSpec.feature 'user wants to follow a wine' do
 
       click_on("Follow Wine")
       expect(current_path).to eq(wine_path(@wine))
-      expect(page).to have_content("Wine successfully followed!")
+
+      visit wine_path(@wine.code)
+
       expect(page).to have_link("Unfollow Wine")
-      expect(user.follows.first.target).to eq(@wine)
+      expect(@user.follows.first.target).to eq(@wine)
     end
   end
   context "when not logged in" do
