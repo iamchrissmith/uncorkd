@@ -4,6 +4,7 @@
 
 <% if current_user %>
   <li><%= link_to "Logout", logout_path %></li>
+  <li><%= link_to "Event Suggestions", new_suggestion_path %></li>
 <% else %>
   <li><%= link_to "Login", login_path %></li>
   <li><%= link_to "Create Account", new_user_path %></li>

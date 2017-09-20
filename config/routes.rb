@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/new_suggestion", to: "suggestions#new"
+
   resources :users, only: [:show, :create, :new, :edit, :update] do
     resources :follows, only: [:create, :destroy]
   end
