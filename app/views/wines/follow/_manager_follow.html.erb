@@ -1,6 +1,7 @@
 <% if @wine_data.uncorked_wine && current_user.manager_has_venues_with_wine?(@wine_data.uncorked_wine) %>
   <%= link_to "Edit Venues", wine_edit_venues_path(@wine_data.uncorked_wine) %>
+<% elsif @wine_data.uncorked_wine %>
+<%= link_to "Add to Venue", wine_add_to_venues_path(@wine_data.uncorked_wine), class:"waves-effect waves-light btn-large" %>
 <% else %>
-<% wine_params = {code: @wine_data.snooth_wine.code, name: @wine_data.snooth_wine.name} %>
-<%= link_to "Add to Venue", wine_add_to_venues_path(wine_id: @wine_data.snooth_wine.code, wine_name:@wine_data.snooth_wine.name), :method => :post, class:"waves-effect waves-light btn-large" %>
+<%= link_to "Add to Venue", wine_add_to_venues_path(wine_id: @wine_data.snooth_wine.code, wine_name:@wine_data.snooth_wine.name), class:"waves-effect waves-light btn-large" %>
 <% end %>

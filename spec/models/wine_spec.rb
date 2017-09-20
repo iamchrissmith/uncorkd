@@ -5,7 +5,6 @@ RSpec.describe Wine, type: :model do
     context "invalid attributes" do
       it { should validate_presence_of(:name) }
       it { should validate_presence_of(:code) }
-      it { should validate_uniqueness_of(:name) }
     end
 
     context "valid attributes" do

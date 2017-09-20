@@ -8,7 +8,7 @@ class VenueWinesController < ApplicationController
   def create
     new_ids = params[:venue_wines][:venue_ids].select(&:presence)
     @wine.venues = @wine.venues + new_ids.map { |id| Venue.find(id) }
-    redirect_to wine_path(@wine), success: "This wine has been successfully listed on your selected venues."
+    redirect_to wine_path(@wine.code), success: "This wine has been successfully listed on your selected venues."
   end
 
   def edit
@@ -30,8 +30,10 @@ class VenueWinesController < ApplicationController
 
   private
     def set_wine
-      if params[:wine_data]
-        @wine = Wine.create(code: params[:wine_data][:snooth_wine][:code], name: params[:wine_data][:snooth_wine][:name])
+      if params[:wine_name]
+        @wine = Wine.find_or_create_by(code: params[:wine_id]) do |wine|
+          wine.name = params[:wine_name]
+        end
       else
         @wine = Wine.find(params[:wine_id])
       end

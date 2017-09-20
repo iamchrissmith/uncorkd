@@ -2,6 +2,7 @@
   <%= render partial: "wines/follow/#{current_user.role}_follow" %>
 <% end %>
 <div class="center">
+  <h5><%= @wine_data.snooth_wine.name %></h5>
   <%= render partial: 'wines/wine_details', locals: {wine: @wine_data.snooth_wine} %>
 </div>
 <% if @wine_data.uncorked_wine && @wine_data.uncorked_wine.reviews %>

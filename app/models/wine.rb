@@ -1,6 +1,5 @@
 class Wine < ApplicationRecord
   validates_presence_of :name, :code
-  validates_uniqueness_of :name, :code
 
   has_many :venue_wines
   has_many :venues, through: :venue_wines

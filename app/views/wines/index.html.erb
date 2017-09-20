@@ -6,6 +6,7 @@
   <div class="col s6">
     <div class="card medium wine">
       <div class="card-content center">
+        <h5><%= link_to wine.name, wine_path(wine.code) %></h5>
         <%= render partial: 'wines/wine_details', locals: {wine: wine} %>
       </div>
     </div>
