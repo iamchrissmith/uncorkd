@@ -1,7 +1,10 @@
+<%= tag :div, class: "snooth-info", data: {key: ENV['SNOOTH_API']} %>
+
+
   <div class="input-field col s12">
     <select id="occassion">
       <option value="dinner">Dinner</option>
-      <option value="picnics">Picnic</option>
+      <option value="picnic">Picnic</option>
       <option value="celebration">Celebration</option>
       <option value="dessert">Dessert</option>
       <option value="everyday">Everyday</option>
@@ -44,5 +47,9 @@
   </div>
 
 <div class="center-align">
-  <button type="button" name="button" class="waves-effect waves-light btn" id="btn-suggest">Generate Suggestion</button>
+  <button type="button" name="button" class="waves-effect waves-light btn" id="btn-suggest">Generate Suggestions</button>
+</div>
+
+<div id="suggestions">
+
 </div>
