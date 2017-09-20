@@ -4,9 +4,9 @@
 <div class="center">
   <%= render partial: 'wines/wine_details', locals: {wine: @wine_data.snooth_wine} %>
 </div>
-<% if @wine_data.reviews %>
+<% if @wine_data.uncorked_wine && @wine_data.uncorked_wine.reviews %>
   <%= render partial: 'wines/wine_reviews', locals: {reviews: @wine_data.uncorked_wine.reviews} %>
 <% end %>
-<% if @wine_data.venues %>
+<% if @wine_data.uncorked_wine && @wine_data.uncorked_wine.venues %>
 <%= render partial: 'venues/summary', locals: {venues: @wine_data.uncorked_wine.venues} %>
 <% end %>

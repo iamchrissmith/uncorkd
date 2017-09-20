@@ -25,18 +25,15 @@ class VenueWinesController < ApplicationController
     venues_to_add = kept_ids - @wine.venues.pluck(:id)
     @wine.venue_wines.where(venue_id: venues_to_delete).destroy_all
     @wine.venues = @wine.venues + venues_to_add.map { |id| Venue.find(id) }
-    redirect_to wine_path(@wine), success: "The venues with this wine has been successfully updated."
-
-    # wine.venues.joins(:venue_wines).where(venue_wines: {user_id: 102} ).update_all("wines.venues = ([53])")
-    # wine.venues.update_all({venues: [53]}, ["venue_wines.user_id = ?", 102])
+    redirect_to wine_path(@wine.code), success: "The venues with this wine has been successfully updated."
   end
 
   private
     def set_wine
-      @wine = Wine.find(params[:wine_id])
+      if params[:wine_data]
+        @wine = Wine.create(code: params[:wine_data][:snooth_wine][:code], name: params[:wine_data][:snooth_wine][:name])
+      else
+        @wine = Wine.find(params[:wine_id])
+      end
     end
-
-    # def venue_wines_params
-    #   params.permit(:venue_wines)
-    # end
 end

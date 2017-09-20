@@ -1,4 +1,4 @@
-<%= form_tag( wine_edit_venues_path(@wine), method: :post) do %>
+<%= form_tag( wine_edit_venues_path(wine: params[:wine_id]), method: :post) do %>
   Select/deselect the venues where you would like to list/unlist <%= @wine.name %>:
   <ul>
     <% current_user.venues.each do |venue| %>
