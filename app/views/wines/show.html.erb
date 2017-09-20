@@ -5,33 +5,34 @@
     </div>
   </div>
   <div class="col s4">
-  <div class="profile-overview white-div center-align">
-    <h5><%= @wine_data.snooth_wine.name %></h5>
-    <% if current_user && !current_user.admin? %>
+    <div class="profile-overview white-div center-align">
+      <h5><%= @wine_data.snooth_wine.name %></h5>
+      <% if current_user && !current_user.admin? %>
       <%= render partial: "wines/follow/#{current_user.role}_follow" %>
+      <% end %>
+      <%= render partial: 'wines/wine_details', locals: {wine: @wine_data.snooth_wine} %></div>
+
+    <% if @wine_data.uncorked_wine && @wine_data.uncorked_wine.reviews %>
+    <div class="white-div center-align">
+      <h5>Average Rating</h5>
+      <%= @wine_data.uncorked_wine.average_review_rating %>
+      <% @wine_data.uncorked_wine.average_review_rating.floor.times do %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <% end %>
+      <% if @wine_data.uncorked_wine.half_star? %>
+      <i class="fa fa-star-half-o" aria-hidden="true"></i>
+      <% end %>
+    </div>
     <% end %>
-    <%= render partial: 'wines/wine_details', locals: {wine: @wine_data.snooth_wine} %></div>
 
-<div class="white-div center-align">
-<h5>Average Rating</h5>
-<%= @wine.average_review_rating %>
-<% @wine.average_review_rating.floor.times do %>
-<i class="fa fa-star" aria-hidden="true"></i>
-<% end %>
-<% if @wine.half_star? %>
-  <i class="fa fa-star-half-o" aria-hidden="true"></i>
-<% end %>
-</div>
+    <% if @wine_data.uncorked_wine && @wine_data.uncorked_wine.venues %>
+    <div class="white-div center-align">
+      <h5>Venues</h5>
+      <% @wine_data.uncorked_wine.venues.each do |venue| %>
+      <p><%= link_to venue.name, venue_path(venue) %></p>
+      <% end %>
+    </div>
+    <% end %>
 
-<% if @wine_data.uncorked_wine && @wine_data.uncorked_wine.venues %>
-<div class="white-div center-align">
-  <h5>Venues</h5>
-  <% @wine.venues.each do |venue| %>
-    <p><%= link_to venue.name, venue_path(venue) %></p>
-  <% end %>
-</div>
-<% end %>
-
-
-</div>
+  </div>
 </div>

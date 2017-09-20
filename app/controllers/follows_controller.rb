@@ -13,6 +13,7 @@ class FollowsController < ApplicationController
     end
     follow = current_user.follows.new(target: target)
     if follow.save
+      follow.report_follow
       redirect_to follow.target, success: "#{follow_params[:target_type]} successfully followed!"
     else
       redirect_to follow.target, warning: "There was a problem! #{follow_params[:target_type]} was not followed!"
