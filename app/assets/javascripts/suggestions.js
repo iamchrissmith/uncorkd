@@ -90,8 +90,8 @@ function getSuggestion() {
       type:    "GET",
       url:     "http://api.snooth.com/wines/?akey=" + $('.snooth-info').data('key') + "&n=5&xp=" + price + "&t=" + typeParam[0] + "&color=" + colorParam[0],
       success: function(data) {
+        $('#suggestions').html('');
         wines = JSON.parse(data)["wines"]
-        console.log(wines)
         for (var i = 0; i < wines.length; i++) {
           $('#suggestions').append('<p class="wine center-align">' + wines[i]["name"] + "<br>$" + wines[i]["price"] + "<br>" + wines[i]["type"] + "<br>" + "<a href='" + wines[i]["link"] + "'>Buy on Snooth</a>" + '</p>');
         }
