@@ -1,6 +1,5 @@
-<h3>News Feed</h3>
-<div class="container">
-    <div class="collection">
+    <div class="collection white-div">
+      <h4>News Feed</h4>
         <% if @reviewable.news_feed.empty? %>
           <article class="collection-item">
             <p class="title">No activity.</p>
@@ -10,5 +9,4 @@
               <%= render_activity activity %>
           <% end %>
         <% end %>
-    </div>
 </div>
