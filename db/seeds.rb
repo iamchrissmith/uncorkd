@@ -32,34 +32,9 @@ def create_venues
 end
 
 def create_wines
-  wines = [
-    ["Fallows Red", "A dark wine with strong flavours", 98, "Pinot Noir", "1651", "Fallows Yard"]
-    ]
-  wines.each do |wine|
-    Wine.create!(name: wine[0],
-                 description: wine[1],
-                 rating: wine[2],
-                 varietal: wine[3],
-                 vintage: wine[4],
-                 vineyard: wine[5])
-    puts "Wine #{wine[0]} created"
-  end
-end
-
-def create_fake_wines
-  year = (1800..2017).to_a
-  type = ["Red", "White", "Rose", "Champagne", "Rotgut", "Dessert Wine"]
-  100.times do
-    wine = Wine.new
-    wine.name = "#{Faker::GameOfThrones.character} #{type.sample}"
-    wine.description = Faker::VentureBros.quote
-    wine.rating = Faker::PhoneNumber.subscriber_number(2)
-    wine.varietal = Faker::GameOfThrones.house
-    wine.vintage = year.sample
-    wine.vineyard = Faker::GameOfThrones.city
-    wine.save
-    puts "Wine #{wine.name} created"
-  end
+  Wine.create(code: "guigal-cotes-rouge-2010", name: "Guigal Cotes Rouge")
+  Wine.create(code: "conway-deep-sea-chardonnay-la-costa-wine-co-2008-1", name: "Conway Deep Sea Chardonnay la Costa Wine Co")
+  Wine.create(code: "rocca-delle-rubizzo-2008", name:"Rocca Delle Rubizzo")
 end
 
 def wine_sample
@@ -203,11 +178,10 @@ def create_badge
   Badge.create(name: "All Star Reviewer", description: "You are a contributing community member. You have given at least 10 reviews.")
 end
 
-# create_users
+create_users
 # create_managers
 create_fake_venues
 create_venues
-create_fake_wines
 create_wines
 create_fake_users
 create_fake_managers

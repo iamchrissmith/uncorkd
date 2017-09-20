@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Managers can edit venues a wine is listed on' do
-  let!(:wine) { create(:wine) }
+  let!(:wine) { create(:wine, code: "rocca-delle-rubizzo-2008" , name: "Rocca Delle Rubizzo" ) }
   let!(:venue) { create(:venue, wines: [wine] )}
   let!(:venue2) { create(:venue, wines: [wine] )}
   let!(:new_venue) { create(:venue) }
@@ -17,14 +17,14 @@ RSpec.feature 'Managers can edit venues a wine is listed on' do
       it 'manager can edit which venues carry the wine' do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(manager)
 
-        visit wine_path(wine)
+        visit wine_path(wine.code)
 
         expect(page).to have_content venue.name
         expect(page).to have_content venue2.name
         expect(page).to have_content other_venue.name
         expect(page).not_to have_content new_venue.name
 
-        expect(page).to have_link "Edit Venues", href: wine_edit_venues_path(wine)
+        expect(page).to have_link "Edit Venues"
 
         click_on "Edit Venues"
 
@@ -43,8 +43,7 @@ RSpec.feature 'Managers can edit venues a wine is listed on' do
 
         click_on "Update Venues with #{wine.name}"
 
-        expect(current_path).to eq wine_path(wine)
-        # expect(page).to have_content "The venues with this wine has been successfully updated."
+        expect(current_path).to eq wine_path(wine.code)
         expect(page).not_to have_content venue.name
         expect(page).to have_content venue2.name
         expect(page).to have_content new_venue.name
@@ -59,13 +58,13 @@ RSpec.feature 'Managers can edit venues a wine is listed on' do
     it "user cannot see remove from venue link" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(member)
 
-      visit wine_path(wine)
+      visit wine_path(wine.code)
 
       expect(page).not_to have_content "Remove from Venue"
     end
 
     it "guest cannot see remove from venue link" do
-      visit wine_path(wine)
+      visit wine_path(wine.code)
 
       expect(page).not_to have_content "Remove from Venue"
     end

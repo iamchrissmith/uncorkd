@@ -1,6 +1,40 @@
-<h2><%= @venue.name %></h2>
-<% if current_user %>
-  <%= render partial: "venues/follow/#{current_user.role}_follow" %>
-<% end %>
-<%= render partial: 'venues/venue_details', locals: {venue: @venue} %>
-<%= render partial: 'venues/venue_map' %>
+<div class="row page-row">
+  <div class="col s8 center-align col-feed">
+    <div class="feed">
+      <%= render partial: 'venues/newsfeed' %>
+    </div>
+  </div>
+  <div class="col s4">
+
+  <div class="white-div center-align">
+    <h5><%= @venue.name %></h5>
+    <p><%= @venue.street_address %><br>
+    <%= @venue.city %>, <%= @venue.state %> <%= @venue.zip %></p>
+    <% if current_user %>
+      <%= render partial: "venues/follow/#{current_user.role}_follow" %>
+    <% end %>
+  </div><br>
+
+  <div class="white-div center-align">
+  <h5>Average Rating</h5>
+  <%= @venue.average_review_rating %>
+  <% @venue.average_review_rating.floor.times do %>
+  <i class="fa fa-star" aria-hidden="true"></i>
+  <% end %>
+  <% if @venue.half_star? %>
+    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+  <% end %>
+</div><br>
+
+  <div class="white-div center-align">
+    <h5>Wines</h5>
+    <% @venue.wines.each do |wine| %>
+    <%= link_to wine.name, wine_path(wine) %>
+    <% end %>
+  </div><br>
+    <div class="venue-map">
+      <%= render partial: 'venues/venue_map' %>
+  </div>
+</div>
+
+</div>

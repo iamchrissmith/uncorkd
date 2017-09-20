@@ -1,27 +1,20 @@
 require 'rails_helper'
 
 RSpec.feature 'User can see one wine' do
-  let!(:wines) { create_list(:wine, 2) }
   context 'without being logged in' do
     it 'guest can view a single wine\'s details' do
-      visit root_path
+      wine = create(:wine, code: "olmaia-cabernet-di-toscana", name: "Olmaia Cabernet di Toscana")
+      visit wines_path
+      click_on wine.name
 
-      within '.right' do
-        click_on 'Wines'
-      end
-
-      expect(current_path).to eq wines_path
-
-      click_on wines.first.name
-
-      expect(current_path).to eq wine_path(wines.first)
-      expect(page).to have_content wines.first.name
-      expect(page).to have_content(wines.first.varietal)
-      expect(page).to have_content(wines.first.vintage)
-      expect(page).to have_content(wines.first.vineyard)
-      expect(page).to have_content(wines.first.rating)
-      expect(page).to have_content(wines.first.description)
-      expect(page).not_to have_content(wines.last.name)
+      expect(current_path).to eq wine_path(wine.code)
+      expect(page).to have_content(wine.name)
+      expect(page).to have_content("Vintage: ")
+      expect(page).to have_content("Varietal: Cabernet Sauvignon")
+      expect(page).to have_content("Vineyard: Col D Orcia")
+      expect(page).to have_content("Varietal: Cabernet Sauvignon")
+      expect(page).to have_content("Rating: ")
+      expect(page).to have_content("Price: ")
     end
   end
 end

@@ -1,11 +1,13 @@
 class Feed
 
   def initialize(attrs)
-    @user_id = attrs[:user_id]
-    @target_type = attrs[:target_type]
-    @target_id = attrs[:target_id]
-    @target_feed = attrs[:target_feed]
-    @user_feed ||= StreamRails.client.feed('user', user_id)
+    @user_id      = attrs[:user_id]
+    @target_type  = attrs[:target_type]
+    @target_id    = attrs[:target_id]
+    @target_feed  = attrs[:target_feed]
+    @message      = attrs[:message]
+    @user_feed  ||= StreamRails.client.feed('user', user_id)
+    @venue_id      = attrs[:venue_id]
   end
 
   def follow
@@ -28,7 +30,9 @@ class Feed
                 :target_type,
                 :target_id,
                 :target_feed,
-                :verb
+                :message,
+                :verb,
+                :venue_id
 
     def report_activity(data)
       user_feed.add_activity(data)
@@ -39,6 +43,8 @@ class Feed
         actor: "User:#{user_id}",
         object: "#{target_type}:#{target_id}",
         foreign_id: "#{target_type}:#{target_id}",
+        message: "#{message}",
+        venue: (Venue.find(venue_id) if venue_id) || nil,
         time: DateTime.now,
         to: ["#{target_feed}:#{target_id}"]
       }

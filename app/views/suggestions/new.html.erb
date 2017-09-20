@@ -1,0 +1,55 @@
+<%= tag :div, class: "snooth-info", data: {key: ENV['SNOOTH_API']} %>
+
+
+  <div class="input-field col s12">
+    <select id="occassion">
+      <option value="dinner">Dinner</option>
+      <option value="picnic">Picnic</option>
+      <option value="celebration">Celebration</option>
+      <option value="dessert">Dessert</option>
+      <option value="everyday">Everyday</option>
+    </select>
+    <label>Occasion</label>
+  </div>
+
+  <div class="input-field col s12">
+    <select id="season">
+      <option value="summer">Summer</option>
+      <option value="fall">Fall</option>
+      <option value="winter">Winter</option>
+      <option value="spring">Spring</option>
+    </select>
+    <label>Season</label>
+  </div>
+
+  <div class="input-field col s12">
+    <select  id="food">
+      <option value="red_meat">Red Meat</option>
+      <option value="white_meat">White Meat</option>
+      <option value="vegetables">Vegetables</option>
+      <option value="seafood">Seafood</option>
+      <option value="cheese_crackers">Cheese and Crackers</option>
+      <option value="none">None</option>
+    </select>
+    <label>Food</label>
+  </div>
+
+  <div class="input-field col s12">
+    <select  id="price">
+      <option value="15">$15</option>
+      <option value="30">$30</option>
+      <option value="50">$50</option>
+      <option value="75">$75</option>
+      <option value="100">$100</option>
+      <option value="none">None</option>
+    </select>
+    <label>Max Price/Bottle</label>
+  </div>
+
+<div class="center-align">
+  <button type="button" name="button" class="waves-effect waves-light btn" id="btn-suggest">Generate Suggestions</button>
+</div>
+
+<div id="suggestions">
+
+</div>

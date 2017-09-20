@@ -42,7 +42,7 @@ RSpec.feature "Managers can see a list of their venues" do
 
         visit manager_venues_path
 
-        expect(current_path).to eq root_path
+        expect(current_path).to eq users_profile_path
         # expect(page).to have_content("You do not have permission to access this page.")
       end
     end

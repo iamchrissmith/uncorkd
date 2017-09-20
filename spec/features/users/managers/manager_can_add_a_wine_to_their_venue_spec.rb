@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Managers can add a wine to their venue' do
-  let(:wine) { create(:wine) }
+  let(:wine) { create(:wine, code: "thumbprint-cellars-chardonnay-2007", name: "Thumbprint Cellars Chardonnay") }
 
   context 'when logged in as a manager' do
     let(:manager) { create(:user, :as_manager) }
@@ -10,9 +10,9 @@ RSpec.feature 'Managers can add a wine to their venue' do
     it 'manager can click "Add to Venue" and the wine shows in the venue wines list' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(manager)
 
-      visit wine_path(wine)
+      visit wine_path(wine.code)
 
-      expect(page).to have_link "Add to Venue", href: wine_add_to_venues_path(wine)
+      expect(page).to have_link "Add to Venue"
 
       click_on "Add to Venue"
 
@@ -22,8 +22,7 @@ RSpec.feature 'Managers can add a wine to their venue' do
 
       click_on 'Add Wine to Venues'
 
-      expect(current_path).to eq wine_path(wine)
-      # expect(page).to have_content "This wine has been successfully listed on your selected venues."
+      expect(current_path).to eq wine_path(wine.code)
       expect(page).to have_content venue.name
     end
   end

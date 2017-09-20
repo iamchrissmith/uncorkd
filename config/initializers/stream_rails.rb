@@ -8,8 +8,8 @@ StreamRails.configure do |config|
   # If you use custom feed names, e.g.: timeline_flat, timeline_aggregated,
   # use this, otherwise omit:
   config.news_feeds = {
-    flat: "venue",
-    flat: "wine",
+    venue: "venue",
+    wine: "wine",
     flat: "user"
   }
   # Point to the notifications feed group providing the name, omit if you don't

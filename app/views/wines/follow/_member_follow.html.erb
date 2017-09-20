@@ -1,8 +1,7 @@
-<%= link_to "Review", new_users_review_path(:reviewable_id => @reviewable.id, :reviewable_type => params["controller"]), class:"waves-effect waves-light btn-large" %>
-<% if current_user.followed(@wine) %>
-  <%= link_to "Unfollow #{@wine.class}", user_follow_path(current_user, current_user.followed(@wine)), :method => :delete, class:"waves-effect waves-light btn-large" %>
+<%= link_to "Review", new_users_review_path(reviewable_id: {code: @wine_data.snooth_wine.code, name: @wine_data.snooth_wine.name}, reviewable_type: params["controller"]), class:"waves-effect waves-light btn-large" %>
+<% if @wine_data.uncorked_wine && current_user.followed(@wine_data.uncorked_wine) %>
+  <%= link_to "Unfollow Wine", user_follow_path(current_user, current_user.followed(@wine_data.uncorked_wine)), :method => :delete, class:"waves-effect waves-light btn-large" %>
 <% else %>
-  <% follow_params = {user_id: current_user.id, target_id: @wine.id, target_type: @wine.class} %>
-
-  <%= link_to "Follow #{@wine.class}", user_follows_path(current_user, follow_params), :method => :post, class:"waves-effect waves-light btn-large" %>
+  <% follow_params = {user_id: current_user.id, target_params: {code: @wine_data.snooth_wine.code, name: @wine_data.snooth_wine.name}, target_type: "Wine"} %>
+  <%= link_to "Follow Wine", user_follows_path(current_user, follow_params), :method => :post, class:"waves-effect waves-light btn-large" %>
 <% end %>

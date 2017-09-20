@@ -5,16 +5,32 @@ class User < ApplicationRecord
   validates_uniqueness_of :username
 
   enum role: %w(member manager admin)
+  enum status: %w(active inactive)
 
-  has_many :user_venues, as: :manager
-  has_many :venues, through: :user_venues
+  has_many :user_venues, as: :manager, dependent: :destroy
+  has_many :venues, through: :user_venues, dependent: :destroy
 
-  has_many :user_badges
-  has_many :badges, through: :user_badges
+  has_many :user_badges, dependent: :destroy
+  has_many :badges, through: :user_badges, dependent: :destroy
 
-  has_many :reviews
-  has_many :follows
-  has_many :followed_venues, :through => :follows, :source => :target, :source_type => 'Venue'
+  has_many :reviews, dependent: :destroy
+  has_many :follows, dependent: :destroy
+  has_many :followed_venues, :through => :follows, :source => :target, :source_type => 'Venue', dependent: :destroy
+  has_many :followed_wines, through: :follows, source: :target, source_type: 'Wine', dependent: :destroy
+
+
+  def self.from_omniauth(auth)
+    user = find_or_create_by(uid: auth[:uid]) do |user|
+      user.uid            = auth["uid"]
+      user.first_name     = auth["info"]["name"].split(" ").first
+      user.last_name      = auth["info"]["name"].split(" ").last
+      user.username       = auth["info"]["name"]
+      user.email          = auth["info"]["email"]
+      user.phone_number   = 0
+      user.country_code   = 0
+      user.password       = "password"
+    end
+  end
 
   def verified?
     verified

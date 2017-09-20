@@ -1,4 +1,6 @@
 class Venue < ApplicationRecord
+  include ReviewRatingsModule
+
   validates_presence_of :name, :street_address, :city, :state, :zip
   validates_uniqueness_of :name
 
@@ -25,5 +27,12 @@ class Venue < ApplicationRecord
     return true if state_changed?
     return true if zip_changed?
     false
+  end
+
+  def news_feed
+    enricher = StreamRails::Enrich.new
+    feed = StreamRails.feed_manager.get_news_feeds(id)[:venue]
+    results = feed.get(:limit=>5)['results']
+    enricher.enrich_activities(results)
   end
 end

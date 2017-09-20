@@ -1,0 +1,12 @@
+    <div class="collection white-div">
+      <h4>News Feed</h4>
+        <% if @wine_data.uncorked_wine && @wine_data.uncorked_wine.news_feed.empty? %>
+          <article class="collection-item">
+            <p class="title">No activity.</p>
+          </article>
+        <% elsif @wine_data.uncorked_wine %>
+          <% for activity in @wine_data.uncorked_wine.news_feed %>
+              <%= render_activity activity %>
+          <% end %>
+        <% end %>
+</div>
