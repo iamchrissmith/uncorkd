@@ -7,6 +7,7 @@ class Feed
     @target_feed  = attrs[:target_feed]
     @message      = attrs[:message]
     @user_feed  ||= StreamRails.client.feed('user', user_id)
+    @venue_id      = attrs[:venue_id]
   end
 
   def follow
@@ -30,7 +31,8 @@ class Feed
                 :target_id,
                 :target_feed,
                 :message,
-                :verb
+                :verb,
+                :venue_id
 
     def report_activity(data)
       user_feed.add_activity(data)
@@ -42,6 +44,7 @@ class Feed
         object: "#{target_type}:#{target_id}",
         foreign_id: "#{target_type}:#{target_id}",
         message: "#{message}",
+        venue: (Venue.find(venue_id) if venue_id) || nil,
         time: DateTime.now,
         to: ["#{target_feed}:#{target_id}"]
       }

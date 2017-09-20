@@ -1,7 +1,7 @@
 class Users::ReviewsController < ApplicationController
   def new
     session[:return_to] = request.referer
-    @review = Review.new
+    @new_review_presenter = NewReviewPresenter.new
   end
 
   def create
@@ -11,6 +11,7 @@ class Users::ReviewsController < ApplicationController
         wine.name = reviewable["reviewable_id"]["name"]
       end
       review = wine.reviews.create(review_params)
+      wine.venues << Venue.find(review_params["venue_id"]) if review_params["venue_id"]
     else
       venue  = Venue.find(reviewable["reviewable_id"])
       review = venue.reviews.create(review_params)
@@ -21,12 +22,13 @@ class Users::ReviewsController < ApplicationController
       redirect_to session.delete(:return_to)
       Badge.badge_allocation(current_user)
     else
-      render :new
+      redirect_to new_users_review_path(:reviewable_id => reviewable["reviewable_id"], :reviewable_type => reviewable["reviewable_type"])
     end
   end
 
   private
     def review_params
-      params.require(:review).permit(:description, :rating, :user_id, :reviewable_params, :reviewable_id, :reviewable_type)
+      (params["review"]["venue_id"] = Venue.find_by(name: params["review"]["venue"]).id) unless params["review"]["venue"].empty?
+      params.require(:review).permit(:description, :rating, :user_id, :reviewable_id, :reviewable_type, :reviewable_params, :venue_id)
     end
 end

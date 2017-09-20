@@ -1,11 +1,13 @@
 require 'rails_helper'
 
-RSpec.feature "user wants to review..." do
+RSpec.feature "user wants to review..."  do
   context "a wine" do
     context "when logged in" do
       let(:user) { create(:user) }
       it "user can review wine in the DB" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+        venue_1, venue_2, venue_3 = create_list(:venue, 3)
 
         visit wines_path
         page.assert_selector('.wine', :count => 30)
@@ -20,7 +22,6 @@ RSpec.feature "user wants to review..." do
         fill_in "Description", with: "Nice tannins"
         fill_in "Rating", with: 9
         click_button "Create Review"
-
         expect(current_path).to eq(wine_path("olmaia-cabernet-di-toscana"))
       end
     end
