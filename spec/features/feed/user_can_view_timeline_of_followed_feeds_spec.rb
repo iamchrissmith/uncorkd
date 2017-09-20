@@ -24,13 +24,11 @@ RSpec.feature "user wants to view timeline of followed feeds" do
         visit venue_path(target)
         click_on "Follow Venue"
 
-        # expect(page).to have_content("Venue successfully followed!")
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user2)
         visit venue_path(target)
         click_on "Follow Venue"
 
-        # expect(page).to have_content("Venue successfully followed!")
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
