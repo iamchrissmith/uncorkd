@@ -1,10 +1,24 @@
-<%= form_for([current_user, @review], url: users_reviews_path, method: :post) do |f| %>
+<%= tag :div, class: "venues", data: {names: @new_review_presenter.venues.pluck(:name)} %>
+
+<%= form_for([current_user, @new_review_presenter.review], url: users_reviews_path, method: :post) do |f| %>
   <%= f.label(:description) %>
   <%= f.text_field(:description) %>
   <%= f.label(:rating) %>
+
   <%= f.number_field(:rating) %>
+  <% if params["reviewable_type"] == "wines" %>
+    <div class="col s12">
+        <div class="input-field col s12" id="venue-input">
+          <input type="text" id="autocomplete-input" class="autocomplete">
+          <label for="autocomplete-input">Venue</label>
+        </div>
+    </div>
+  <% end %>
+  <%= f.hidden_field :venue, :value => nil %>
   <%= f.hidden_field :reviewable_id, :value => params["reviewable_id"] %>
   <%= f.hidden_field :reviewable_type, :value => params["reviewable_type"]%>
   <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.submit %>
+  <div class="center-align">
+    <%= f.submit "Create Review", class: "waves-effect waves-light btn waves-input-wrapper" %>
+  </div>
 <% end %>
