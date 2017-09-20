@@ -12,8 +12,6 @@ function getSuggestion() {
         price: $("#price").val(),
     }
 
-    console.log(eventParams)
-
     var color = {red: 0, white: 0};
     var type = {wine: 0, sparkling: 0, dessert: 0};
     var price = eventParams["price"]
@@ -73,10 +71,6 @@ function getSuggestion() {
       color["red"] += 10
     }
 
-    console.log(type)
-    console.log(color)
-    console.log(price)
-
     var typeParam = ["start", 0]
     $.each(type, function (key, value) {
       if(value > typeParam[1]){
@@ -91,9 +85,6 @@ function getSuggestion() {
       }
     })
 
-    console.log(typeParam)
-    console.log(colorParam)
-    console.log(price)
 
     $.ajax({
       type:    "GET",
